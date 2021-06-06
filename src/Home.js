@@ -1,18 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Heading from './components/Heading';
-import Table from './components/Table';
-import * as data from './db.json';
-import './Home.css';
+import Table from './components/Table/Table';
+import Axios from 'axios';
+import './components/css/home.css';
 
-class Home extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Heading title="Movies" />
-        <Table data={data.movieList} />
-      </div>
-    );
+const Home = () => {
+  const [data, setData] = React.useState([]);
+
+  const getData = async () => {
+    const fetchedData = await Axios({
+      method: 'GET',
+      url: 'http://localhost:5000/movieList',
+    })
+    setData(fetchedData.data);
   }
+
+  React.useEffect(() => {
+    getData();
+  }, []);
+
+
+  return (
+    <div className="App">
+      <Heading title="Movies" />
+      <Table data={data} />
+    </div>
+  )
 }
 
-export default Home;
+export default Home
