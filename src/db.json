@@ -1,7 +1,7 @@
 {
   "movieList": [
     {
-      "img": "avatar.jpg",
+      "img": "avatar",
       "alt": "img-avatar",
       "Title": "Avatar",
       "Year": "2009",
@@ -17,7 +17,7 @@
      
     },
     {
-      "img": "I_am_legend.jpg",
+      "img": "I_am_legend",
       "alt": "img-I_am_legend",
       "Title": "I Am Legend",
       "Year": "2007",
@@ -33,7 +33,7 @@
       
     },
     {
-      "img": "the300.jpg",
+      "img": "the300",
       "alt": "img-the300",
       "Title": "300",
       "Year": "2006",
@@ -49,7 +49,7 @@
      
     },
     {
-      "img": "avengers.jpg",
+      "img": "avengers",
       "alt": "img-avengers",
       "Title": "The Avengers",
       "Year": "2012",
@@ -65,7 +65,7 @@
        
     },
     {
-      "img": "the_wolf_of_wall_street.jpg",
+      "img": "the_wolf_of_wall_street",
       "alt": "img-the_wolf_of_wall_street",
       "Title": "The Wolf of Wall Street",
       "Year": "2013",
@@ -81,7 +81,7 @@
       
     },
     {
-      "img": "interstellar.jpg",
+      "img": "interstellar",
       "alt": "img-interstellar",
       "Title": "Interstellar",
       "Year": "2014",
@@ -97,7 +97,7 @@
       
     },
     {
-      "img": "game_of_thrones.jpg",
+      "img": "game_of_thrones",
       "alt": "img-game_of_thrones",
       "Title": "Game of Thrones",
       "Year": "2011–",
@@ -113,7 +113,7 @@
      
     },
     {
-      "img": "vikings.jpg",
+      "img": "vikings",
       "alt": "img-vikings",
       "Title": "Vikings",
       "Year": "2013–",
@@ -129,7 +129,7 @@
       
     },
     {
-      "img": "gotham.jpg",
+      "img": "gotham",
       "alt": "img-gotham",
       "Title": "Gotham",
       "Year": "2014–",
@@ -145,7 +145,7 @@
      
     },
     {
-      "img": "power.jpg",
+      "img": "power",
       "alt": "img-power",
       "Title": "Power",
       "Year": "2014–",
@@ -161,7 +161,7 @@
        
     },
     {
-      "img": "narcos.jpg",
+      "img": "narcos",
       "alt": "img-narcos",
       "Title": "Narcos",
       "Year": "2015–",
@@ -177,7 +177,7 @@
        
     },
     {
-      "img": "breaking_bad.jpg",
+      "img": "breaking_bad",
       "alt": "img-breaking_bad",
       "Title": "Breaking Bad",
       "Year": "2008–2013",
@@ -193,7 +193,7 @@
      
     },
     {
-      "img": "doctor_strange.jpg",
+      "img": "doctor_strange",
       "alt": "img-doctor_strange",
       "Title": "Doctor Strange",
       "Year": "2016",
@@ -209,7 +209,7 @@
       
     },
     {
-      "img": "rogue_one.jpg",
+      "img": "rogue_one",
       "alt": "img-rogue_one",
       "Title": "Rogue One: A Star Wars Story",
       "Year": "2016",
@@ -224,7 +224,7 @@
       "totalSeasons": "1"
     },
     {
-      "img": "assassins_creed.jpg",
+      "img": "assassins_creed",
       "alt": "img-assassins_creed",
       "Title": "Assassin's Creed",
       "Year": "2016",
@@ -239,7 +239,7 @@
       "totalSeasons": "1"
     },
     {
-      "img": "luke_cage.jpg",
+      "img": "luke_cage",
       "alt": "img-luke_cage",
       "Title": "Luke Cage",
       "Year": "2016–",
