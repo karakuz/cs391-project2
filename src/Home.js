@@ -1,10 +1,18 @@
+import React, { Component } from 'react';
+import Heading from './components/Heading';
+import Table from './components/Table';
+import * as data from './db.json';
+import './Home.css';
 
-function Home() {
-  return (
-    <>
-      <h3 style={{ textAlign: "center"}}>HOME PAGE</h3>
-    </>
-  );
+class Home extends Component {
+  render() {
+    return (
+      <div className="App">
+        <Heading title="Movies" />
+        <Table data={data.movieList} />
+      </div>
+    );
+  }
 }
 
 export default Home;
