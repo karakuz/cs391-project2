@@ -9,20 +9,15 @@ const TableBody = (props) => {
     <tbody>
       {list.map((item, index) => {
         return (
-          <tr key={`movie-${index}`}>
-            <td><Thumbnail src={images[item.img]} alt={item.alt} /></td>
-            <td>{item.Title}</td>
-            <td>{item.Year}</td>
-            <td>{item.Released}</td>
-            <td>{item.Runtime}</td>
-            <td>{item.Genre}</td>
-            <td>{item.Director}</td>
-            <td>{item.Plot}</td>
-            <td>{item.Language}</td>
-            <td>{item.Metascore}</td>
-            <td>{item.imdbRating}</td>
-            <td>{item.totalSeasons}</td>
-          </tr>
+          <div className="card" style={{width: "18rem"}} key={`movie-${index}`}>
+            <div className="card-body">
+              <td><Thumbnail src={images[item.img]} alt={item.alt} /></td>
+              <h5 className="card-title">{item.Title}</h5>
+              <h6 className="card-subtitle mb-2 text-muted">{item.Year} | {item.Genre} | {item.Language} | {item.Runtime}</h6>
+              <p className="card-text">{item.Plot}</p>
+              <a href="#" class="btn btn-primary">Goto movie</a>
+            </div>
+          </div>
         );
       })}
     </tbody>);
