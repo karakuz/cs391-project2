@@ -1,28 +1,5 @@
-tr {
-    background-color: #FFFFFF;
-  }
-  
-  th {
-    font-family: 'Open Sans', sans-serif;
-    color: #111111;
-    padding: 10px;
-    font-weight: 600;
-  }
-  
-  td {
-    font-family: 'Open Sans', sans-serif;
-    color: #111111;
-    padding: 10px;
-    font-weight: 300;
-    text-align: center;
-  }
-  
-  table {
-    border: 1px solid #DDDDDD;
-    border-radius: 2px;
-    border-spacing: 0
-  }
-  
-  tbody tr:nth-child(odd) {
-    background-color: #EEEEEE;
-  }
+.card-img-top {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
