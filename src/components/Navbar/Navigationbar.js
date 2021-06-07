@@ -5,7 +5,7 @@ import '../css/header.css'
 const Navigationbar = () => {
   return (
     <header className="navHeader">
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="primary" expand="lg">
         <Navbar.Brand href="/">CineMax</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

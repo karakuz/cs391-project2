@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Login from './components/Login/Login';
 import Navigationbar from './components/Navbar/Navigationbar';
 import Signup from './components/Signup/Signup';
+import "../node_modules/bootswatch/dist/darkly/bootstrap.min.css";
 
 ReactDOM.render(
   <React.StrictMode>

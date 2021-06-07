@@ -3,6 +3,7 @@ import Heading from './components/Heading';
 import Table from './components/Table/Table';
 import Axios from 'axios';
 import './components/css/home.css';
+import "../node_modules/bootswatch/dist/solar/bootstrap.min.css";
 
 const Home = () => {
   const [data, setData] = React.useState([]);
