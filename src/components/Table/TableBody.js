@@ -13,11 +13,11 @@ const TableBody = (props) => {
           <Col sm={12} md={6} lg={4} xl={3} className="d-flex align-items-stretch">
           <Card style={{width: "18rem"}} key={`movie-${index}`}>
            <Card.Img variant="top" src={images[item.img]} alt={item.alt} />
-            <Card.Body>
+            <Card.Body className="d-flex flex-column">
               <Card.Title>{item.Title}</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">{item.Year} | {item.Genre} | {item.Language} | {item.Runtime}</Card.Subtitle>
               <Card.Text>{item.Plot}</Card.Text>
-              <Button variant="primary">Goto movie</Button>
+              <Button variant="primary" className="mt-auto">Goto movie</Button>
             </Card.Body>
           </Card>
           </Col>
