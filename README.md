@@ -41,7 +41,7 @@ Exception-2: Already registered user
 4. System displays error message "User already exists"
 
 Success Guarantee: The system creates a new user and saves their information in the database
-## Log-In
+### Log-In
 Use case name: Log-In
 
 Description: The user enters his/her email and password and the system checks localStorage and logs the user in.
@@ -79,7 +79,7 @@ Exception-2: Wrong Password
 5. System display error message "Wrong password"
 
 Success guarantee: The user signs in successfuly.
-## Goto Movie
+### Goto Movie
 Use case name: Goto movie
 
 Description: The user can click goto movie button on each movie to see more information and access ticketing system.
