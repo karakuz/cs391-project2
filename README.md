@@ -98,14 +98,7 @@ Success scenario:
 3. The user can check ratings and reviews.
 4. The user can buy a ticket.
 
-Alternate flows:
-Alternate-1:
-1. User opens consultation page.
-2. The page askes for user permission to display location.
-3. User denies access to location.
-4. Website contains generic list of locations.
-
-Success scenario: The map displays search results nearby.
+Success scenario: The user accesses detailed movie information and can access reservation system.
 
 ## Responsibilities:
 
