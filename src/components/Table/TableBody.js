@@ -10,7 +10,7 @@ const TableBody = (props) => {
     <Row>
       {list.map((item, index) => {
         return (
-          <Col>
+          <Col sm={12} md={6} lg={4} xl={3}>
           <Card style={{width: "18rem"}} key={`movie-${index}`}>
            <Card.Img variant="top" src={images[item.img]} alt={item.alt} />
             <Card.Body>
