@@ -258,9 +258,14 @@
     }
   ],
   "users": [
-    
+    {
+      "email": "emre.karakuz@ozu.edu.tr",
+      "password": "123456",
+      "password_confirmation": "123456",
+      "name": "Emre",
+      "surname": "Karakuz",
+      "id": 1
+    }
   ],
-  "reservations":[
-
-  ]
+  "reservations": []
 }

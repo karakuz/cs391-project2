@@ -42,7 +42,7 @@ class Signup extends Component {
       this.clearValidationErr([event.target.name]);
     }
 
-    handleSubmit(event) {
+    async handleSubmit(event) {
 
       event.preventDefault();
 
@@ -76,6 +76,13 @@ EMAIL EXISTENCE CHECK TEST 2 (neden çalışmıyor)
         } 
        });
 ----------------------------------------------------------------------------------------------*/
+
+      const existence = await Axios.get(`http://localhost:5000/users?${email}`);
+      
+
+      if (existence.data !== {}){
+        return this.showValidationErr("email", "This e-mail is already taken!");
+      }
 
       if (this.state.password !== this.state.password_confirmation) {
         return this.showValidationErr("password_confirmation", "Passwords do not match!");
