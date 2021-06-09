@@ -12,21 +12,80 @@ class Signup extends Component {
       password_confirmation: "",
       name: "",
       surname: "",
+      errors: []
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    
   }
+
+    showValidationErr(elm, msg) {
+      this.setState((prevState) => ({errors: [...prevState.errors, {elm,msg}]}));
+    }
+
+    clearValidationErr(elm) {
+      this.setState((prevState) => {
+        let newArr = [];
+        for (let err of prevState.errors) {
+          if (elm != err.elm) {
+            newArr.push(err);
+          }
+        }
+        return {errors: newArr};
+      });
+    }
 
     handleChange(event) {
       this.setState({[event.target.name]: event.target.value});
+      this.clearValidationErr([event.target.name]);
     }
 
     handleSubmit(event) {
+      //check email in db.json -> email is already taken
+      //password and password confirmation do not match
+
+      const { email, password, password_confirmation, name, surname } = this.state;
+
+      if (this.state.password !== this.state.password_confirmation) {
+        return this.showValidationErr("password_confirmation", "Passwords do not match!");
+      }
+
+      axios
+      .post(
+        "http://localhost:5000/users",
+        {
+          user: {
+            email: email,
+            password: password,
+            password_confirmation: password_confirmation,
+            name: name,
+            surname: surname
+          }
+        }
+      )
+      .then(response => response);
+
+    event.preventDefault();
 
     }
 
   render() {
+
+    let emailErr = null,
+    password_confirmationErr = null;
+    
+
+    for (let err of this.state.errors) {
+      if (err.elm == "email") {
+        emailErr = err.msg;
+      }
+      if (err.elm == "password_confirmation") {
+        password_confirmationErr = err.msg;
+      }
+    }
+
+
     return (
       <div className="formDiv">
         <Form onSubmit={this.handleSubmit}>
@@ -36,6 +95,7 @@ class Signup extends Component {
             </Form.Label>
             <Col sm="10">
               <Form.Control type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} required />
+              <small>{emailErr ? emailErr: ""}</small>
             </Col>
           </Form.Group>
           <Form.Group as={Row} controlId="formPlaintextPassword">
@@ -52,6 +112,7 @@ class Signup extends Component {
             </Form.Label>
             <Col sm="10">
               <Form.Control type="password" placeholder="Confirm Password" name="password_confirmation" value={this.state.password_confirmation} onChange={this.handleChange} required />
+              <small>{password_confirmationErr ? password_confirmationErr: ""}</small>
             </Col>
           </Form.Group>
           <Form.Group as={Row}>
