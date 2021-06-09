@@ -48,7 +48,7 @@ class Signup extends Component {
 
       const { email, password, password_confirmation, name, surname } = this.state;
 
-/*-----------------------------------------------------------------------------------------------
+/*----------------------------------------------------------------------------------------------
 EMAIL EXISTENCE CHECK TEST 1 (neden çalışmıyor)
 
       const checkEmail = (serverUsers) => {
@@ -63,9 +63,9 @@ EMAIL EXISTENCE CHECK TEST 1 (neden çalışmıyor)
            if (a) {
             return this.showValidationErr("email", "This e-mail is already taken!");
            }
------------------------------------------------------------------------------------------------*/
+----------------------------------------------------------------------------------------------*/
 
-/*-----------------------------------------------------------------------------------------------
+/*----------------------------------------------------------------------------------------------
 EMAIL EXISTENCE CHECK TEST 2 (neden çalışmıyor)
 
       axios
@@ -75,7 +75,7 @@ EMAIL EXISTENCE CHECK TEST 2 (neden çalışmıyor)
           return this.showValidationErr("email", "This e-mail is already taken!");
         } 
        });
------------------------------------------------------------------------------------------------*/
+----------------------------------------------------------------------------------------------*/
 
       if (this.state.password !== this.state.password_confirmation) {
         return this.showValidationErr("password_confirmation", "Passwords do not match!");
