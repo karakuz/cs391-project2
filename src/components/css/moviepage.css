@@ -1,7 +1,27 @@
-h3{
+h3,
+h4{
   text-align: center;
 }
 
 .container{
   margin-top: 2rem;
+}
+
+.movieImage{
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.loginMessage{
+  text-align: center;
+}
+
+.reservationDiv{
+  margin: 0 auto;
+  justify-content: center;
+  max-width: 400px;
+}
+.submitReservation{
+  display: block;
+  margin: 0 auto;
 }

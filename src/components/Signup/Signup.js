@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Col, Row, Form, Button } from 'react-bootstrap';
+import Axios from 'axios'
 import '../css/login.css'
 import axios from "axios";
 
@@ -81,16 +82,28 @@ EMAIL EXISTENCE CHECK TEST 2 (neden çalışmıyor)
         return this.showValidationErr("password_confirmation", "Passwords do not match!");
       }
 
+<<<<<<< Updated upstream
 
       axios
+=======
+      Axios
+>>>>>>> Stashed changes
       .post(
         "http://localhost:5000/users", 
         {
+<<<<<<< Updated upstream
             email: email,
             password: password,
             password_confirmation: password_confirmation,
             name: name,
             surname: surname
+=======
+          email: email,
+          password: password,
+          password_confirmation: password_confirmation,
+          name: name,
+          surname: surname
+>>>>>>> Stashed changes
         }
       )
       .then(response => response);
