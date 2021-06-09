@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { Component } from "react";
 import { Col, Row, Form, Button } from 'react-bootstrap';
 import '../css/login.css'
@@ -20,6 +21,10 @@ class Login extends Component {
     }
 
     handleSubmit(event) {
+      //check email in the db.json if email do not exist -> user do not exist
+      //if email exist check if password correct if not -> incorrect password
+
+      //axios.get("http://localhost:5000/users/${email}");
 
     }
 
