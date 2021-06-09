@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Col, Row, Form, Button } from 'react-bootstrap';
 import '../css/login.css'
+import axios from "axios";
 
 class Signup extends Component {
   constructor(props) {
@@ -42,31 +43,57 @@ class Signup extends Component {
     }
 
     handleSubmit(event) {
-      //check email in db.json -> email is already taken
-      //password and password confirmation do not match
+
+      event.preventDefault();
 
       const { email, password, password_confirmation, name, surname } = this.state;
+
+/*-----------------------------------------------------------------------------------------------
+EMAIL EXISTENCE CHECK TEST 1 (neden çalışmıyor)
+
+      const checkEmail = (serverUsers) => {
+        const user = serverUsers.find(user => user.email === this.state.email);
+         return user;
+       };
+         
+           const a = axios
+             .get("http://localhost:5000/users")
+             .then((response) => checkEmail(response.data));
+
+           if (a) {
+            return this.showValidationErr("email", "This e-mail is already taken!");
+           }
+-----------------------------------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------------------------------
+EMAIL EXISTENCE CHECK TEST 2 (neden çalışmıyor)
+
+      axios
+       .get("http://localhost:5000/users${email}")
+       .then(response => {
+        if (response.data.includes(this.state.email)){
+          return this.showValidationErr("email", "This e-mail is already taken!");
+        } 
+       });
+-----------------------------------------------------------------------------------------------*/
 
       if (this.state.password !== this.state.password_confirmation) {
         return this.showValidationErr("password_confirmation", "Passwords do not match!");
       }
 
+
       axios
       .post(
-        "http://localhost:5000/users",
+        "http://localhost:5000/users", 
         {
-          user: {
             email: email,
             password: password,
             password_confirmation: password_confirmation,
             name: name,
             surname: surname
-          }
         }
       )
       .then(response => response);
-
-    event.preventDefault();
 
     }
 
@@ -124,9 +151,6 @@ class Signup extends Component {
             </Col>
           </Form.Group>
           <div className="buttonDiv">
-            <Form.Group controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Remember me" />
-            </Form.Group>
             <Button type="submit">Sign Up</Button>
           </div>
         </Form>
