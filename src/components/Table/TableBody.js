@@ -1,29 +1,34 @@
 import React from 'react';
-/*import Thumbnail from '../Thumbnail';*/
-import images from '../../images/index';
+import '../css/table.css'
 import {Row, Col, Card, Button} from 'react-bootstrap';
 
 const TableBody = (props) => {
   const list = props.list;
+  //console.log(list);
   
   return (
     <Row>
-      {list.map((item, index) => {
+      {list.map((item) => {
         return (
-          <Col sm={12} md={6} lg={4} xl={3} className="d-flex align-items-stretch">
-          <Card style={{width: "18rem"}} key={`movie-${index}`}>
-           <Card.Img variant="top" src={images[item.img]} alt={item.alt} />
-            <Card.Body className="d-flex flex-column">
-              <Card.Title>{item.Title}</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">{item.Year} | {item.Genre} | {item.Language} | {item.Runtime}</Card.Subtitle>
-              <Card.Text>{item.Plot}</Card.Text>
-              <Button variant="primary" className="mt-auto">Goto movie</Button>
-            </Card.Body>
-          </Card>
+          <Col sm={12} md={6} lg={4} xl={3} className="d-flex align-items-stretch movieCardDiv">
+            <Card key={item.id}>
+              <a href={`/movie/${item.id}`}>
+                <Card.Img variant="top" src={`${item.img}`} alt={item.alt} />
+              </a>
+              <Card.Body className="d-flex flex-column">
+                <a href={`/movie/${item.id}`}>
+                  <Card.Title>{item.Title}</Card.Title>
+                </a>
+                <Card.Subtitle className="mb-2 text-muted">{item.Year} | {item.Genre} | {item.Language} | {item.Runtime}</Card.Subtitle>
+                <Card.Text>{item.Plot}</Card.Text>
+                <Button variant="primary" className="mt-auto">Goto movie</Button>
+              </Card.Body>
+            </Card>
           </Col>
         );
       })}
-    </Row>);
+    </Row>
+  );
 }
 
 export default TableBody

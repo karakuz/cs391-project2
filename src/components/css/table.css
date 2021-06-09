@@ -3,3 +3,8 @@
   height: 400px;
   object-fit: cover;
 }
+
+.movieCardDiv{
+  justify-content: center;
+  margin-bottom: 2rem;
+}
