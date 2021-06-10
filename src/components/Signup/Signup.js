@@ -60,17 +60,22 @@ class Signup extends Component {
         return this.showValidationErr("password_confirmation", "Passwords do not match!");
       }
 
-      Axios
-      .post(
-        "http://localhost:5000/users", 
-        {
-          email: email,
-          password: password,
-          name: name,
-          surname: surname
-        }
-      )
-      .then(response => response);
+      else{
+        Axios
+        .post(
+          "http://localhost:5000/users", 
+          {
+            email: email,
+            password: password,
+            name: name,
+            surname: surname
+          }
+        )
+        .then(response => response);
+
+        alert("Signup Successful");
+        window.location.href="/";
+      }
 
     }
 
