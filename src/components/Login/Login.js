@@ -10,15 +10,33 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      rememberMe: 0
+      rememberMe: 0,
+      errors: []
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
+  showValidationErr(elm, msg) {
+    this.setState((prevState) => ({errors: [...prevState.errors, {elm,msg}]}));
+  }
+
+  clearValidationErr(elm) {
+    this.setState((prevState) => {
+      let newArr = [];
+      for (let err of prevState.errors) {
+        if (elm !== err.elm) {
+          newArr.push(err);
+        }
+      }
+      return {errors: newArr};
+    });
+  }
+
   handleChange(event) {
     this.setState({[event.target.name]: event.target.value});
+    this.clearValidationErr([event.target.name]);
   }
 
   async handleSubmit(event) {
@@ -29,12 +47,10 @@ class Login extends Component {
 
     const existence = await Axios.get(`http://localhost:5000/users?email=${email}`);
     if(existence.data.length === 0){
-      alert("User Doesnt Exist");
-      return;
+      return this.showValidationErr("email", "User Does not Exist");
     }
     if(existence.data[0].password !== password){
-      alert("Password is wrong");
-      return;
+      return this.showValidationErr("password", "Password is wrong");
     }
     else{
       (rememberMe === "on") ? localStorage.setItem("userID", existence.data[0].id) : sessionStorage.setItem("userID", existence.data[0].id);
@@ -44,6 +60,21 @@ class Login extends Component {
   }
 
   render() {
+
+    let emailErr = null,
+    passwordErr = null;
+    
+
+    for (let err of this.state.errors) {
+      if (err.elm == "email") {
+        emailErr = err.msg;
+      }
+      if (err.elm == "password") {
+        passwordErr = err.msg;
+      }
+    }
+
+
     return (
       <div className="formDiv">
         <Form onSubmit={this.handleSubmit}>
@@ -53,6 +84,7 @@ class Login extends Component {
             </Form.Label>
             <Col sm="10">
               <Form.Control type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} required />
+              <small>{emailErr ? emailErr: ""}</small>
             </Col>
           </Form.Group>
           <Form.Group as={Row} controlId="formPlaintextPassword">
@@ -61,6 +93,7 @@ class Login extends Component {
             </Form.Label>
             <Col sm="10">
               <Form.Control type="password" placeholder="Password" name="password" value={this.state.password} onChange={this.handleChange} required />
+              <small>{passwordErr ? passwordErr: ""}</small>
             </Col>
           </Form.Group>
           <div className="buttonDiv">
