@@ -94,7 +94,6 @@ EMAIL EXISTENCE CHECK TEST 2 (neden çalışmıyor)
         {
           email: email,
           password: password,
-          password_confirmation: password_confirmation,
           name: name,
           surname: surname
         }

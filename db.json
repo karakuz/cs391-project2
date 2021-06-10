@@ -261,11 +261,23 @@
     {
       "email": "emre.karakuz@ozu.edu.tr",
       "password": "123456",
-      "password_confirmation": "123456",
       "name": "Emre",
       "surname": "Karakuz",
       "id": 1
     }
   ],
-  "reservations": []
+  "reservations": [
+    {
+      "email": "emre.karakuz@ozu.edu.tr",
+      "date": "2021-06-18",
+      "time": "12:00",
+      "id": 1
+    },
+    {
+      "email": "emre.karakuz@ozu.edu.tr",
+      "date": "2021-06-17",
+      "time": "12:00",
+      "id": 2
+    }
+  ]
 }

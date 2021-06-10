@@ -12,6 +12,9 @@ const MoviePage = () => {
   const [date, setDate] = React.useState("");
   const [time, setTime] = React.useState("");
 
+  const userID = localStorage.getItem("userID") || sessionStorage.getItem("userID");
+  console.log("userID: " + userID);
+
   const getMovie = async () => {
     const fetchedData = await Axios({
       method: 'GET',
@@ -33,8 +36,6 @@ const MoviePage = () => {
 
     const formatted_today = `${today.getFullYear()}-${month}-${day}`;
 
-    console.log("Time: " + time);
-    console.log("Date: " + date);
 
     if(time === ""){
       alert("Select a time");
@@ -50,10 +51,33 @@ const MoviePage = () => {
       return;
     }
 
+    const user = await Axios({
+      method: 'GET',
+      url: `http://localhost:5000/users?id=${userID}`,
+    });
+
     const existence = await Axios({
       method: 'GET',
-      url: 'http://localhost:5000/movieList',
-    })
+      url: `http://localhost:5000/reservations?email=${user.data[0].email}&&time=${time}&&date=${date}`,
+    });
+
+    if(existence.data.length !== 0){
+      alert(`You have already reserved a seat for this movie on ${date} at ${time}`);
+      return;
+    }
+
+    const res = await Axios.post(
+      `http://localhost:5000/reservations`,
+      {
+        email: user.data[0].email,
+        date: date,
+        time: time
+      }
+    );
+    if(res.status === 201)
+      alert("Reservation has been made");
+    else
+      alert("Server error");
   }
   
   return (
@@ -69,40 +93,43 @@ const MoviePage = () => {
       </Row>
       <Row>
         <h4>Reservation</h4>
-        <span className="loginMessage">In order to make a reservation, <a href="/login">Login</a></span>
+        {
+          (userID === null) ? 
+            <span className="loginMessage">In order to make a reservation, <a href="/login">Login</a></span>
+          : 
+          <>
+            <Form onSubmit={ e => reserve(e)}>
+              <Row className="mb-3 reservationDiv">
+                <Form.Group as={Row} controlId="formGridDate">
+                  <Form.Label>Date</Form.Label>
+                  <Form.Control type="date" onChange={ e => setDate(e.target.value)} />
+                </Form.Group>
 
-        <Form onSubmit={ e => reserve(e)}>
-          <Row className="mb-3 reservationDiv">
-            <Form.Group as={Row} controlId="formGridDate">
-              <Form.Label>Date</Form.Label>
-              <Form.Control type="date" onChange={ e => setDate(e.target.value)} />
-            </Form.Group>
+                <Form.Group as={Row} controlId="formGridTime">
+                  <Form.Label>Time</Form.Label>
 
-            <Form.Group as={Row} controlId="formGridTime">
-              <Form.Label>Time</Form.Label>
+                  {/* <Form.Select defaultValue="Choose...">
+                    <option>Choose...</option>
+                    <option>...</option>
+                  </Form.Select> */}
 
-              {/* <Form.Select defaultValue="Choose...">
-                <option>Choose...</option>
-                <option>...</option>
-              </Form.Select> */}
+                  <select className="form-control" onChange={ e => setTime(e.target.value)}>
+                    <option selected="selected" value=""></option>
+                    {
+                      times.map( time => {
+                        return <option value={time}>{time}</option>
+                      })
+                    }
+                  </select>
+                </Form.Group>
+              </Row>
 
-              <select className="form-control" onChange={ e => setTime(e.target.value)}>
-                <option selected="selected" value=""></option>
-                {
-                  times.map( time => {
-                    return <option value={time}>{time}</option>
-                  })
-                }
-              </select>
-            </Form.Group>
-          </Row>
-
-          
-
-          <Button variant="primary" type="submit" className="submitReservation">
-            Submit
-          </Button>
-        </Form>
+              <Button variant="primary" type="submit" className="submitReservation">
+                Submit
+              </Button>
+            </Form>
+          </>
+        }
       </Row>
     </Container>
   )

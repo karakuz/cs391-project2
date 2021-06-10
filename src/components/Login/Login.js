@@ -1,4 +1,4 @@
-import axios from "axios";
+import Axios from "axios";
 import React, { Component } from "react";
 import { Col, Row, Form, Button } from 'react-bootstrap';
 import '../css/login.css'
@@ -10,23 +10,42 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
+      rememberMe: 0
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-    handleChange(event) {
-      this.setState({[event.target.name]: event.target.value});
+  handleChange(event) {
+    this.setState({[event.target.name]: event.target.value});
+  }
+
+  async handleSubmit(event) {
+    event.preventDefault();
+    const { email, password, rememberMe } = this.state;
+    //check email in the db.json if email do not exist -> user do not exist
+    //if email exist check if password correct if not -> incorrect password
+
+    //axios.get("http://localhost:5000/users/${email}");
+
+    console.log("Remember me: " + rememberMe);
+
+    const existence = await Axios.get(`http://localhost:5000/users?email=${email}`);
+    if(existence.data.length === 0){
+      alert("User Doesnt Exist");
+      return;
     }
-
-    handleSubmit(event) {
-      //check email in the db.json if email do not exist -> user do not exist
-      //if email exist check if password correct if not -> incorrect password
-
-      //axios.get("http://localhost:5000/users/${email}");
-
+    if(existence.data[0].password !== password){
+      alert("Password is wrong");
+      return;
     }
+    else{
+      (rememberMe === "on") ? localStorage.setItem("userID", existence.data[0].id) : sessionStorage.setItem("userID", existence.data[0].id);
+      alert("Login Successful");
+      window.location.href="/";
+    }
+  }
 
   render() {
     return (
@@ -50,7 +69,7 @@ class Login extends Component {
           </Form.Group>
           <div className="buttonDiv">
             <Form.Group controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Remember me" />
+              <Form.Check type="checkbox" name="rememberMe" label="Remember me" onChange={this.handleChange}/>
             </Form.Group>
             <Button type="submit">Log In</Button>
           </div>
