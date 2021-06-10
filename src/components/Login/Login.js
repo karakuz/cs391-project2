@@ -24,10 +24,6 @@ class Login extends Component {
   async handleSubmit(event) {
     event.preventDefault();
     const { email, password, rememberMe } = this.state;
-    //check email in the db.json if email do not exist -> user do not exist
-    //if email exist check if password correct if not -> incorrect password
-
-    //axios.get("http://localhost:5000/users/${email}");
 
     console.log("Remember me: " + rememberMe);
 
