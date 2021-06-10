@@ -22,14 +22,21 @@ class Signup extends Component {
   }
 
     showValidationErr(elm, msg) {
-      this.setState((prevState) => ({errors: [...prevState.errors, {elm,msg}]}));
+      this.setState((prevState) => ({
+        errors: [
+          ...prevState.errors, {
+            elm,
+            msg
+          }
+        ]
+      }));
     }
 
     clearValidationErr(elm) {
       this.setState((prevState) => {
         let newArr = [];
         for (let err of prevState.errors) {
-          if (elm !== err.elm) {
+          if (elm != err.elm) {
             newArr.push(err);
           }
         }
