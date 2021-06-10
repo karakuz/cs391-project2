@@ -48,43 +48,15 @@ class Signup extends Component {
 
       const { email, password, password_confirmation, name, surname } = this.state;
 
-/*----------------------------------------------------------------------------------------------
-EMAIL EXISTENCE CHECK TEST 1 (neden çalışmıyor)
 
-      const checkEmail = (serverUsers) => {
-        const user = serverUsers.find(user => user.email === this.state.email);
-         return user;
-       };
-         
-           const a = axios
-             .get("http://localhost:5000/users")
-             .then((response) => checkEmail(response.data));
+      const existence = await Axios.get(`http://localhost:5000/users?email=${email}`);
 
-           if (a) {
-            return this.showValidationErr("email", "This e-mail is already taken!");
-           }
-----------------------------------------------------------------------------------------------*/
-
-/*----------------------------------------------------------------------------------------------
-EMAIL EXISTENCE CHECK TEST 2 (neden çalışmıyor)
-
-      axios
-       .get("http://localhost:5000/users${email}")
-       .then(response => {
-        if (response.data.includes(this.state.email)){
-          return this.showValidationErr("email", "This e-mail is already taken!");
-        } 
-       });
-----------------------------------------------------------------------------------------------*/
-
-      const existence = await Axios.get(`http://localhost:5000/users?${email}`);
-      
-
-      if (existence.data !== {}){
+      if(existence.data.length !== 0){
         return this.showValidationErr("email", "This e-mail is already taken!");
       }
+      
 
-      if (this.state.password !== this.state.password_confirmation) {
+      if (password !== password_confirmation) {
         return this.showValidationErr("password_confirmation", "Passwords do not match!");
       }
 
