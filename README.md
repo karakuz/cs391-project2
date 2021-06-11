@@ -8,9 +8,9 @@ The main goal of our project is to provide easy information on a selection of mo
 ### Sign-Up
 Use case name: Sign-Up
 
-Description: The user enters his/her personal information and the system saves the information in LocalStorage API.
+Description: The user enters his/her personal information and the system saves the information in db.json.
 
-Owner: Maram Elsebakhi 08.05.21
+Owner: Doğuhan Bayık 11.06.21
 
 Actor: Website user.
 
@@ -25,28 +25,34 @@ Success scenario:
 2. User enters email address, name, surname, new password and repeat new password.
 3. User clicks sign up buttion.
 4. System checks if all data is entered correctly.
-5. System saves the user's data in the local storage.
+5. System saves the user's data in db.json.
 
 Exception flows:
 Exception-1: Missing input
 1. User opens sign up page.
 2. User inputs some or none of the fields.
 3. User clicks sign up button.
-4. System displays error message "Please enter each field"
+4. System displays error message that these fields are required.
 
 Exception-2: Already registered user
-1. User opens sign up pages
-2. User inputs all the fields, email entered is already registered
+1. User opens sign up page.
+2. User inputs all the fields, email entered is already registered.
 3. User clicks sign up button.
-4. System displays error message "User already exists"
+4. System displays error message "This e-mail is already taken!"
 
-Success Guarantee: The system creates a new user and saves their information in the database
-### Log-In
-Use case name: Log-In
+Exception-3: Password confirmation
+1. User opens sign up page.
+2. User inputs all the fields, password and password* do not match.
+3. User clicks sign up button.
+4. System displays error message "Passwords do not match!"
 
-Description: The user enters his/her email and password and the system checks localStorage and logs the user in.
+Success Guarantee: The system creates a new user and saves their information in db.json.
+### Login
+Use case name: Login
 
-Owner: Maram Elsebakhi 08.05.21
+Description: The user enters his/her email and password and the system checks db.josn and logs the user in.
+
+Owner: Doğuhan Bayık 11.06.21
 
 Actor: Website user.
 
@@ -54,31 +60,38 @@ Preconditions:
 
 - The user has intenet access.
 - The homepage has been opened in a compatible web browser.
-The event that started the use-case: User clicks on log-in button.
+The event that started the use-case: User clicks on login button.
 
 Success scenario:
-1. User opens log-in page
+1. User opens login page
 2. User inputs their email address and password.
-3. User clicks sign in button.
-4. System confirms matching in locale storage.
-5. The user successfuly signs in.
+3. If user clicks remember me button system saves userid in local storage.
+4. User clicks login button.
+5. System confirms matching in db.json.
+6. The user successfuly logs in.
 
 Exception flows:
-Exception-1: Not registered
-1. User opens log-in page
-2. User inputs their email address and password.
-3. User clicks log-in button.
-4. System does not find matching in locale storage.
-5. System display error message "user does not exist or wrong email"
+Exception-1: Missing input
+1. User opens login page.
+2. User inputs some or none of the fields.
+3. User clicks sign up button.
+4. System displays error message that these fields are required.
 
-Exception-2: Wrong Password
-1. User opens log-in page
+Exception-2: Not registered
+1. User opens login page
 2. User inputs their email address and password.
-3. User clicks log-in button.
-4. System does finds email in locale storage but password mismatch.
-5. System display error message "Wrong password"
+3. User clicks login button.
+4. System does not find matching in db.json.
+5. System display error message "User Does not Exist"
 
-Success guarantee: The user signs in successfuly.
+Exception-3: Wrong Password
+1. User opens login page
+2. User inputs their email address and password.
+3. User clicks login button.
+4. System does finds email in db.json but password mismatch.
+5. System display error message "Password is wrong"
+
+Success guarantee: The user logs in successfuly.
 ### Goto Movie
 Use case name: Goto movie
 
