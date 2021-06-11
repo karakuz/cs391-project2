@@ -5,8 +5,8 @@ Group Members: Doğuhan Bayık, Maram Elsebakhi, Yunus Emre Karakuz
 The main goal of our project is to provide easy information on a selection of movies, as well as the ability to buy a ticket for a movie screening. The website contains four main sections: The main landing page, that includes a card display of all available movies; The goto movie page, that provides more information for the movies as well as a ticketing interface; The Sign Up page that lets the users and sign up for our website; A login page that lets a user login to our website.
 
 ## UseCase Scenarios:
-### Sign-Up
-Use case name: Sign-Up
+### Sign Up
+Use case name: Sign Up
 
 Description: The user enters his/her personal information and the system saves the information in db.json.
 
@@ -121,8 +121,8 @@ Success scenario: The user accesses detailed movie information and can access re
 - README file
 
 **Doğuhan Bayık:**
-- Sign up and log-in pages and CSS styling for the page.
-- Javascript code for LocalStorage API "sign_up.js".
+- Signup.js and Login.js
+- Interacting with db.json for saving and checking data in order to sign up and login.
 
 **Yunus Emre Karakuz:**
 - General structure and setting up of the entire website.
