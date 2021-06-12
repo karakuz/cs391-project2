@@ -92,12 +92,12 @@ Exception-3: Wrong Password
 5. System display error message "Password is wrong"
 
 Success guarantee: The user logs in successfuly.
-### Goto Movie
-Use case name: Goto movie
+### Movie Page
+Use case name: Movie page
 
-Description: The user can click goto movie button on each movie to see more information and access ticketing system.
+Description: The user can click movie name or image on each movie to see more information and access ticketing system.
 
-Owner: Maram Elsebakhi 07.06.21
+Owner: Emre Karakuz 07.06.21
 
 Actor: Website user.
 
@@ -106,12 +106,49 @@ Preconditions:
 - The homepage has been opened in a compatible web browser.
 
 Success scenario:
-1. User clicks on goto movie button.
+1. User clicks on movie name or its image.
 2. The website is redirected to a new page containing detailed movie information.
-3. The user can check ratings and reviews.
-4. The user can buy a ticket.
+4. The user can book a ticket.
 
 Success scenario: The user accesses detailed movie information and can access reservation system.
+
+Exception flows:
+Exception-1: Missing time or date
+1. User opens movie page.
+2. User lefts date or time input blank.
+3. User clicks Submit button.
+4. System displays error message that these fields are required.
+
+Exception-2: User selects a day before today
+1. User opens movie page.
+2. User correctly enters the inputs and selects a day before today.
+3. User clicks Submit button.
+4. System displays error message that he/she selected a day before today.
+
+Exception-3: User already has a ticket at that time
+1. User opens movie page.
+2. User correctly enters the inputs.
+3. User clicks Submit button.
+4. System displays error message that he/she has already a ticket for a movie at that given date and time.
+
+### Profile Page
+Use case name: Profile page
+
+Description: The user can click Profile on the right hand side of the navigation bar in order to see information of his/her account and reservations.
+
+Owner: Emre Karakuz 07.06.21
+
+Actor: Website user.
+
+Preconditions:
+- The user has intenet access.
+- The homepage has been opened in a compatible web browser.
+- User has to be logged in
+
+Success scenario:
+1. User clicks on Profile on the right hand side of the navigation bar.
+2. The website is redirected to a new page containing detailed profile information and reservations.
+4. The user check the information.
 
 ## Responsibilities:
 
@@ -127,7 +164,8 @@ Success scenario: The user accesses detailed movie information and can access re
 **Yunus Emre Karakuz:**
 - General structure and setting up of the entire website.
 - Routing functionality in Index.js and NavigationBar.js.
-- Goto movie page.
+- Movie page.
+- Profile page
 
 ## Instructions:
 1. Download the website folder
