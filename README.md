@@ -92,6 +92,29 @@ Exception-3: Wrong Password
 5. System display error message "Password is wrong"
 
 Success guarantee: The user logs in successfuly.
+### Login
+Use case name: Login
+
+Description: The user can logout from his/her account.
+
+Owner: Doğuhan Bayık 11.06.21
+
+Actor: Website user.
+
+Preconditions:
+
+- The user has intenet access.
+- The homepage has been opened in a compatible web browser.
+- The user has to be logged in
+- 
+The event that started the use-case: User clicks on Logout on the right hand side of the navigation bar.
+
+Success scenario:
+1. User logs in
+2. User clicks on Logout.
+3. The user successfuly logs out.
+
+Success guarantee: The user logs out successfuly.
 ### Movie Page
 Use case name: Movie page
 
