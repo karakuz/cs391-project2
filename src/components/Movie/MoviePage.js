@@ -79,7 +79,7 @@ const MoviePage = () => {
     );
     if(res.status === 201){
       alert("Reservation has been made");
-      window.location.href = `/movie/${movieID}`;
+      window.location.href = `/`;
     }
     else
       alert("Server error");
