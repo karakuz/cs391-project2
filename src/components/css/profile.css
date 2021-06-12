@@ -1,0 +1,17 @@
+.profile-card{
+  max-width: 400px;
+  margin: 0 auto
+}
+
+h3{
+  margin: 2rem 0;
+}
+
+p{
+  text-align: center;
+}
+
+table{
+  max-width: 600px;
+  margin: 0 auto;
+}

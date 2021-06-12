@@ -25,3 +25,8 @@ h4{
   display: block;
   margin: 0 auto;
 }
+
+.movie-details{
+  max-width: 800px;
+  margin: 4rem auto;
+}

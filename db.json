@@ -269,15 +269,59 @@
   "reservations": [
     {
       "email": "emre.karakuz@ozu.edu.tr",
-      "date": "2021-06-18",
-      "time": "12:00",
+      "Title": "Avatar",
+      "movieID": 1,
+      "date": "2021-06-25",
+      "time": "21:00",
       "id": 1
     },
     {
       "email": "emre.karakuz@ozu.edu.tr",
-      "date": "2021-06-17",
-      "time": "12:00",
+      "Title": "Avatar",
+      "movieID": 1,
+      "date": "2021-06-25",
+      "time": "18:00",
       "id": 2
+    },
+    {
+      "email": "emre.karakuz@ozu.edu.tr",
+      "Title": "Avatar",
+      "movieID": 1,
+      "date": "2021-06-25",
+      "time": "24:00",
+      "id": 3
+    },
+    {
+      "email": "emre.karakuz@ozu.edu.tr",
+      "Title": "I Am Legend",
+      "movieID": 2,
+      "date": "2021-06-25",
+      "time": "18:00",
+      "id": 4
+    },
+    {
+      "email": "emre.karakuz@ozu.edu.tr",
+      "Title": "I Am Legend",
+      "movieID": 2,
+      "date": "2021-06-25",
+      "time": "21:00",
+      "id": 5
+    },
+    {
+      "email": "emre.karakuz@ozu.edu.tr",
+      "Title": "300",
+      "movieID": 3,
+      "date": "2021-06-25",
+      "time": "15:00",
+      "id": 6
+    },
+    {
+      "email": "emre.karakuz@ozu.edu.tr",
+      "Title": "300",
+      "movieID": 3,
+      "date": "2021-06-25",
+      "time": "09:00",
+      "id": 7
     }
   ]
 }

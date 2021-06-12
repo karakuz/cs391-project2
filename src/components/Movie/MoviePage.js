@@ -13,7 +13,6 @@ const MoviePage = () => {
   const [time, setTime] = React.useState("");
 
   const userID = localStorage.getItem("userID") || sessionStorage.getItem("userID");
-  console.log("userID: " + userID);
 
   const getMovie = async () => {
     const fetchedData = await Axios({
@@ -61,8 +60,9 @@ const MoviePage = () => {
       url: `http://localhost:5000/reservations?email=${user.data[0].email}&&time=${time}&&date=${date}`,
     });
 
+
     if(existence.data.length !== 0){
-      alert(`You have already reserved a seat for this movie on ${date} at ${time}`);
+      alert(`You have already reserved a seat for a movie on ${date} at ${time}. Check profile for details`);
       return;
     }
 
@@ -70,12 +70,16 @@ const MoviePage = () => {
       `http://localhost:5000/reservations`,
       {
         email: user.data[0].email,
+        Title: movieData.Title,
+        movieID: movieData.id,
         date: date,
         time: time
       }
     );
-    if(res.status === 201)
+    if(res.status === 201){
       alert("Reservation has been made");
+      window.location.href = `/movie/${movieID}`;
+    }
     else
       alert("Server error");
   }
@@ -85,11 +89,13 @@ const MoviePage = () => {
       <Row>
         <h3>{movieData.Title}</h3>
         <Image src={movieData.img} className="movieImage"/>
+      </Row>
+      <Row className="movie-details">
         <span>Released: {movieData.Released}</span>
         <span>Duration: {movieData.Runtime}</span>
         <span>IMDB: {movieData.imdbRating}</span>
         <span>Genre: {movieData.Genre}</span>
-        <p>Descripton: {movieData.Plot}</p>
+        <span>Descripton: {movieData.Plot}</span>
       </Row>
       <Row>
         <h4>Reservation</h4>
@@ -108,19 +114,14 @@ const MoviePage = () => {
                 <Form.Group as={Row} controlId="formGridTime">
                   <Form.Label>Time</Form.Label>
 
-                  {/* <Form.Select defaultValue="Choose...">
-                    <option>Choose...</option>
-                    <option>...</option>
-                  </Form.Select> */}
-
-                  <select className="form-control" onChange={ e => setTime(e.target.value)}>
+                  <Form.Control as="select" className="form-control" onChange={ e => setTime(e.target.value)} defaultValue="">
                     <option selected="selected" value=""></option>
                     {
                       times.map( time => {
                         return <option value={time}>{time}</option>
                       })
                     }
-                  </select>
+                  </Form.Control>
                 </Form.Group>
               </Row>
 

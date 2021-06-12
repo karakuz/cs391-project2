@@ -9,6 +9,7 @@ import Navigationbar from './components/Navbar/Navigationbar';
 import Signup from './components/Signup/Signup';
 import "../node_modules/bootswatch/dist/darkly/bootstrap.min.css";
 import MoviePage from './components/Movie/MoviePage';
+import Profile from './components/Profile/Profile';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.render(
       <Switch>
         <Route path="/" exact component={App} />
         <Route path="/login" component={Login} />
+        <Route path="/profile" component={Profile} />
         <Route path="/signup" component={Signup} />
         <Route path="/movie/:movieID" component={MoviePage} />
       </Switch>

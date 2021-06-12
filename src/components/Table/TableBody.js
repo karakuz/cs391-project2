@@ -1,10 +1,9 @@
 import React from 'react';
 import '../css/table.css'
-import {Row, Col, Card, Button} from 'react-bootstrap';
+import {Row, Col, Card} from 'react-bootstrap';
 
 const TableBody = (props) => {
   const list = props.list;
-  //console.log(list);
   
   return (
     <Row>
@@ -21,7 +20,6 @@ const TableBody = (props) => {
                 </a>
                 <Card.Subtitle className="mb-2 text-muted">{item.Year} | {item.Genre} | {item.Language} | {item.Runtime}</Card.Subtitle>
                 <Card.Text>{item.Plot}</Card.Text>
-                <Button variant="primary" className="mt-auto">Goto movie</Button>
               </Card.Body>
             </Card>
           </Col>
