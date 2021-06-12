@@ -67,6 +67,11 @@ class Signup extends Component {
         return this.showValidationErr("password_confirmation", "Passwords do not match!");
       }
 
+      if(!localStorage){
+        alert("Sorry, your browser does not support local storage");
+        return;
+      }
+
       else{
         Axios
         .post(
