@@ -13,8 +13,8 @@ import Profile from './components/Profile/Profile';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Navigationbar/>
     <Router>
+    <Navigationbar/>
       <Switch>
         <Route path="/" exact component={App} />
         <Route path="/login" component={Login} />

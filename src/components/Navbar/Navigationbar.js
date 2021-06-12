@@ -1,14 +1,14 @@
 import React from 'react'
-import { Navbar, Nav, NavDropdown, Form } from 'react-bootstrap';
+import { Navbar, Nav, Form } from 'react-bootstrap';
 import '../css/header.css'
 
 const Navigationbar = () => {
-  const userID = localStorage.getItem("userID") || sessionStorage.getItem("userID");
+  const [userID, setUserID] = React.useState(localStorage.getItem("userID") || sessionStorage.getItem("userID"));
 
   const logout = () => {
     localStorage.removeItem('userID');
     sessionStorage.removeItem('userID');
-    window.location.href="/";
+    window.location.reload();
   }
 
   return (

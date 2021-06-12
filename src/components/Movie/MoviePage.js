@@ -62,7 +62,8 @@ const MoviePage = () => {
 
 
     if(existence.data.length !== 0){
-      alert(`You have already reserved a seat for a movie on ${date} at ${time}. Check profile for details`);
+      const splitDate = date.split('-');
+      alert(`You have already reserved a seat for a movie on ${splitDate[2]}-${splitDate[1]}-${splitDate[0]} at ${time}. Check profile for details`);
       return;
     }
 

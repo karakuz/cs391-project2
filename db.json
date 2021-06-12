@@ -264,6 +264,13 @@
       "name": "Emre",
       "surname": "Karakuz",
       "id": 1
+    },
+    {
+      "email": "emre.karakuz@ozu.edu.trr",
+      "password": "123456",
+      "name": "Emre",
+      "surname": "K",
+      "id": 2
     }
   ],
   "reservations": [
@@ -322,6 +329,14 @@
       "date": "2021-06-25",
       "time": "09:00",
       "id": 7
+    },
+    {
+      "email": "emre.karakuz@ozu.edu.tr",
+      "Title": "Avatar",
+      "movieID": 1,
+      "date": "2021-06-25",
+      "time": "12:00",
+      "id": 8
     }
   ]
 }

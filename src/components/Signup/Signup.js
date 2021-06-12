@@ -1,121 +1,65 @@
-import React, { Component } from "react";
+import React from "react";
 import { Col, Row, Form, Button } from 'react-bootstrap';
 import Axios from 'axios'
 import '../css/login.css'
 
-class Signup extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      email: "",
-      password: "",
-      password_confirmation: "",
-      name: "",
-      surname: "",
-      errors: []
-    };
+const Signup = () => {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = React.useState("");
+  const [name, setName] = React.useState("");
+  const [surname, setSurname] = React.useState("");
+  const [emailErr, setEmailErr] = React.useState("");
+  const [passwordConfirmationErr, setPasswordConfirmationErr] = React.useState("");
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const existence = await Axios.get(`http://localhost:5000/users?email=${email}`);
+
+    if(existence.data.length !== 0){
+      setEmailErr("This e-mail is already taken!");
+      return;
+    }
+
+    if (password !== passwordConfirmation){
+      setPasswordConfirmationErr("Passwords do not match!");
+      return;
+    }
+
+    if(!localStorage){
+      alert("Sorry, your browser does not support local storage");
+      return;
+    }
+
+    else{
+      Axios
+      .post(
+        "http://localhost:5000/users", 
+        {
+          email: email,
+          password: password,
+          name: name,
+          surname: surname
+        }
+      )
+      .then(response => response);
+
+      alert("Signup Successful");
+      window.location.href= "/";
+    }
   }
 
-    showValidationErr(elm, msg) {
-      this.setState((prevState) => ({
-        errors: [
-          ...prevState.errors, {
-            elm,
-            msg
-          }
-        ]
-      }));
-    }
-
-    clearValidationErr(elm) {
-      this.setState((prevState) => {
-        let newArr = [];
-        for (let err of prevState.errors) {
-          if (elm != err.elm) {
-            newArr.push(err);
-          }
-        }
-        return {errors: newArr};
-      });
-    }
-
-    handleChange(event) {
-      this.setState({[event.target.name]: event.target.value});
-      this.clearValidationErr([event.target.name]);
-    }
-
-    async handleSubmit(event) {
-
-      event.preventDefault();
-
-      const { email, password, password_confirmation, name, surname } = this.state;
-
-
-      const existence = await Axios.get(`http://localhost:5000/users?email=${email}`);
-
-      if(existence.data.length !== 0){
-        return this.showValidationErr("email", "This e-mail is already taken!");
-      }
-      
-
-      if (password !== password_confirmation) {
-        return this.showValidationErr("password_confirmation", "Passwords do not match!");
-      }
-
-      if(!localStorage){
-        alert("Sorry, your browser does not support local storage");
-        return;
-      }
-
-      else{
-        Axios
-        .post(
-          "http://localhost:5000/users", 
-          {
-            email: email,
-            password: password,
-            name: name,
-            surname: surname
-          }
-        )
-        .then(response => response);
-
-        alert("Signup Successful");
-        window.location.href="/";
-      }
-
-    }
-
-  render() {
-
-    let emailErr = null,
-    password_confirmationErr = null;
-    
-
-    for (let err of this.state.errors) {
-      if (err.elm == "email") {
-        emailErr = err.msg;
-      }
-      if (err.elm == "password_confirmation") {
-        password_confirmationErr = err.msg;
-      }
-    }
-
-
-    return (
-      <div className="formDiv">
-        <Form onSubmit={this.handleSubmit}>
+  return (
+    <div className="formDiv">
+        <Form onSubmit={handleSubmit}>
           <Form.Group as={Row} controlId="formPlaintextEmail">
             <Form.Label column sm="2">
               Email
             </Form.Label>
             <Col sm="10">
-              <Form.Control type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} required />
+              <Form.Control type="email" name="email" placeholder="Email" value={email} onChange={(e) => {setEmail(e.target.value); setEmailErr(""); setPasswordConfirmationErr("")}} required />
               <small>{emailErr ? emailErr: ""}</small>
             </Col>
           </Form.Group>
@@ -124,7 +68,7 @@ class Signup extends Component {
               Password
             </Form.Label>
             <Col sm="10">
-              <Form.Control type="password" placeholder="Password" name="password" value={this.state.password} onChange={this.handleChange} required />
+              <Form.Control type="password" placeholder="Password" name="password" value={password} onChange={(e) => {setPassword(e.target.value); setEmailErr(""); setPasswordConfirmationErr("")}} required />
             </Col>
           </Form.Group>
           <Form.Group as={Row} controlId="formPlaintextPassword">
@@ -132,16 +76,16 @@ class Signup extends Component {
               Password(*)
             </Form.Label>
             <Col sm="10">
-              <Form.Control type="password" placeholder="Confirm Password" name="password_confirmation" value={this.state.password_confirmation} onChange={this.handleChange} required />
-              <small>{password_confirmationErr ? password_confirmationErr: ""}</small>
+              <Form.Control type="password" placeholder="Confirm Password" name="password_confirmation" value={passwordConfirmation} onChange={(e) => {setPasswordConfirmation(e.target.value); setEmailErr(""); setPasswordConfirmationErr("")}} required />
+              <small>{passwordConfirmationErr ? passwordConfirmationErr: ""}</small>
             </Col>
           </Form.Group>
           <Form.Group as={Row}>
             <Col>
-              <Form.Control placeholder="First name" name="name" value={this.state.name} onChange={this.handleChange} required />
+              <Form.Control placeholder="First name" name="name" value={name} onChange={(e) => {setName(e.target.value); setEmailErr(""); setPasswordConfirmationErr("")}} required />
             </Col>
             <Col>
-              <Form.Control placeholder="Last name" name="surname" value={this.state.surname} onChange={this.handleChange} required />
+              <Form.Control placeholder="Last name" name="surname" value={surname} onChange={(e) => {setSurname(e.target.value); setEmailErr(""); setPasswordConfirmationErr("")}} required />
             </Col>
           </Form.Group>
           <div className="buttonDiv">
@@ -149,8 +93,7 @@ class Signup extends Component {
           </div>
         </Form>
       </div>
-    )
-  };
+  )
 }
 
 export default Signup
