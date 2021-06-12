@@ -213,5 +213,7 @@ Success scenario:
 IDE: Visual Studio Code.
 
 ## Libraries:
+```
 1. concurrently ^6.2.0 : In order to run both port 3000 (react app) and port 5000 (fake json api)
 2. bootswatch ^5.0.1 : A predefined css which is used to make website's background black
+```
